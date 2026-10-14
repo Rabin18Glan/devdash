@@ -4,6 +4,23 @@
 
 ---
 
+## ⚡ Quick Install
+
+Install the latest precompiled binary in seconds using **curl**:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Rabin18Glan/devdash/main/install.sh | bash
+```
+
+Once installed, simply run:
+```bash
+devdash
+```
+
+*(You can also download standalone tarballs from the [GitHub Releases](https://github.com/Rabin18Glan/devdash/releases) page).*
+
+---
+
 ## ✨ Features
 
 - **🔌 [1] Port Manager**:
@@ -60,22 +77,20 @@
 
 ---
 
-## 🚀 Installation & Running
+## 🛠️ Alternative Installation Methods
 
-### Run the Interactive TUI
-```bash
-cargo run --release
-```
-or run the binary directly:
-```bash
-./target/release/devdash
-```
-
-### Install Globally to Cargo bin:
+### Install from Crates / Cargo Source:
 ```bash
 cargo install --path .
 ```
-Then you can run `devdash` from any terminal directory.
+
+### Build Manually from Source:
+```bash
+git clone https://github.com/Rabin18Glan/devdash.git
+cd devdash
+cargo build --release
+./target/release/devdash
+```
 
 ---
 
