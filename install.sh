@@ -75,6 +75,11 @@ tar -xzf "$TMP_DIR/$ARCHIVE_NAME" -C "$TMP_DIR"
 
 install -m 755 "$TMP_DIR/$BIN_NAME" "$DEST_DIR/$BIN_NAME"
 
+# Also symlink to ~/.cargo/bin if present in PATH to prevent bash hashing collisions
+if [ -d "$HOME/.cargo/bin" ] && [ "$DEST_DIR" != "$HOME/.cargo/bin" ]; then
+  ln -sf "$DEST_DIR/$BIN_NAME" "$HOME/.cargo/bin/$BIN_NAME" 2>/dev/null || true
+fi
+
 echo -e "${GREEN}✔ DevDash installed successfully to ${DEST_DIR}/${BIN_NAME}!${RESET}"
 
 # Check if DEST_DIR is in PATH
@@ -86,5 +91,8 @@ case ":$PATH:" in
     echo -e "  export PATH=\"\$HOME/.local/bin:\$PATH\""
     ;;
 esac
+
+# Clear bash command hash table if running interactively
+hash -r 2>/dev/null || true
 
 echo -e "${CYAN}Run 'devdash' to get started! 🚀${RESET}"
